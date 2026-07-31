@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kompres — Kompres &amp; Konversi File</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="blob blob-a" aria-hidden="true"></div>
+  <div class="blob blob-b" aria-hidden="true"></div>
+  <div class="blob blob-c" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <header class="top">
+      <h1>Kompres</h1>
+      <p class="tagline">Kecilin ukuran atau ganti format file — foto, video, audio. Semua diproses langsung di HP/browser kamu, gak diupload ke server mana pun.</p>
+    </header>
+
+    <div class="segmented" id="segmented" role="tablist">
+      <div class="segmented-pill" id="segPill" aria-hidden="true"></div>
+      <button class="seg-btn active" data-mode="compress" role="tab" aria-selected="true">Kompres</button>
+      <button class="seg-btn" data-mode="convert" role="tab" aria-selected="false">Konversi</button>
+    </div>
+
+    <section class="card drop-card" id="dropCard">
+      <input type="file" id="fileInput" hidden />
+      <div class="drop-inner" id="dropInner">
+        <div class="drop-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0-12 4.5 4.5M12 3 7.5 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <p class="drop-title" id="dropTitle">Taruh file di sini, atau ketuk buat pilih</p>
+        <p class="drop-sub">Gambar (JPG, PNG, WEBP) · Video (MP4, MOV, WEBM) · Audio (MP3, WAV, M4A)</p>
+      </div>
+    </section>
+
+    <section class="card options-card" id="optionsCard" hidden>
+      <div class="file-chip" id="fileChip">
+        <span class="file-name" id="fileName">—</span>
+        <span class="file-meta" id="fileMeta">—</span>
+        <button class="chip-x" id="clearFile" aria-label="Hapus file">✕</button>
+      </div>
+
+      <div id="compressOptions" class="options-block">
+        <label class="opt-label">Tingkat kompresi</label>
+        <div class="ios-slider-row">
+          <span class="opt-hint">Kecil</span>
+          <input type="range" id="qualityRange" min="1" max="100" value="70" class="ios-slider" />
+          <span class="opt-hint">Bagus</span>
+        </div>
+        <p class="opt-value-line">Kualitas: <span id="qualityValue">70</span>%</p>
+      </div>
+
+      <div id="convertOptions" class="options-block" hidden>
+        <label class="opt-label">Konversi ke format</label>
+        <div class="format-grid" id="formatGrid"></div>
+      </div>
+
+      <button class="action-btn" id="processBtn">Proses</button>
+    </section>
+
+    <section class="card progress-card" id="progressCard" hidden>
+      <div class="ring-wrap">
+        <svg width="88" height="88" viewBox="0 0 88 88" class="ring-svg">
+          <circle cx="44" cy="44" r="38" class="ring-bg" />
+          <circle cx="44" cy="44" r="38" class="ring-fg" id="ringFg" />
+        </svg>
+        <span class="ring-percent" id="ringPercent">0%</span>
+      </div>
+      <p class="progress-label" id="progressLabel">Menyiapkan mesin proses...</p>
+    </section>
+
+    <section class="card result-card" id="resultCard" hidden>
+      <div class="result-icon">✓</div>
+      <p class="result-title">Selesai!</p>
+      <div class="result-sizes">
+        <div class="size-box">
+          <span class="size-label">Sebelum</span>
+          <span class="size-val" id="sizeBefore">—</span>
+        </div>
+        <div class="size-arrow">→</div>
+        <div class="size-box">
+          <span class="size-label">Sesudah</span>
+          <span class="size-val" id="sizeAfter">—</span>
+        </div>
+      </div>
+      <p class="result-savings" id="resultSavings"></p>
+      <a class="action-btn download-btn" id="downloadBtn" href="#" download>Download File</a>
+      <button class="text-btn" id="resetBtn">Proses file lain</button>
+    </section>
+
+    <p class="status-line" id="statusLine"></p>
+  </main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
